@@ -13,29 +13,43 @@ const cDescr = "Metric scale where water freezes at 0°C and boils at 100°C";
 const fDescr = "Imperial scale where water freezes at 32°F and boils at 212°F";
 const kDescr =
   "Scientific scale where water freezes at 273.15 K and boils at 373.15 K";
-function descrValue(value) {
-  if (value === "Celsius") {
-    return cDescr;
-  } else if (value === "Farenheit") {
-    return fDescr;
-  } else if (value === "Kelvin") {
-    return kDescr;
-  }
-}
-
 // initial states
 let fromTemp = "Celsius";
 let toTemp = "Farenheit";
+
+function descrValue(value) {
+  let temp = value.target.value;
+  if (temp === "Celsius") {
+    return cDescr;
+  } else if (temp === "Farenheit") {
+    return fDescr;
+  } else if (temp === "Kelvin") {
+    return kDescr;
+  }
+}
+function state(value) {
+  let iD = value.target.id;
+  let temp = value.target.value;
+  if (iD === "from_temperature") {
+    fromTemp = temp;
+  } else if (iD === "to_temperature") {
+    toTemp = temp;
+  }else{
+    return;
+  }
+}
+
 fromSelect.addEventListener("change", (info) => {
-  let value = info.target.value
-  fromTempDescr.innerText = ;
+  fromTempDescr.innerText = descrValue(info);
+  state(info);
+  console.log(fromTemp, toTemp);
 });
 toSelect.addEventListener("change", (info) => {
-  if (info.target.value === "Celsius") {
-    toTempDescr.innerText = cDescr;
-  } else if (info.target.value === "Farenheit") {
-    toTempDescr.innerText = fDescr;
-  } else if (info.target.value === "Kelvin") {
-    toTempDescr.innerText = kDescr;
-  }
+  toTempDescr.innerText = descrValue(info);
+  state(info);
+  console.log(fromTemp, toTemp);
 });
+/* Conversion formula functions */
+// function farenheit(
+
+// )
