@@ -42,7 +42,7 @@ function state(value) {
 fromSelect.addEventListener("change", (info) => {
   fromTempDescr.innerText = descrValue(info);
   state(info);
-  console.log(fromTemp, toTemp);
+  console.log(fromTemp, toTemp, info.target.value);
 });
 toSelect.addEventListener("change", (info) => {
   toTempDescr.innerText = descrValue(info);
@@ -84,7 +84,7 @@ convertBtn.addEventListener("click", () => {
     convertedValue = converter.fhrCel(valueToConvert);
   } else if (fromTemp === "Farenheit" && toTemp === "Kelvin") {
     convertedValue = converter.fhrKel(valueToConvert);
-  } else if (fromTemp === "Celcius" && toTemp === "Farenheit") {
+  } else if (fromTemp === "Celsius" && toTemp === "Farenheit") {
     convertedValue = converter.celFhr(valueToConvert);
   } else if (fromTemp === "Celsius" && toTemp === "Kelvin") {
     convertedValue = converter.celKel(valueToConvert);
